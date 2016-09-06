@@ -1,0 +1,6 @@
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\bin\Debug\SocketClient.exe.config
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\bin\Debug\SocketClient.exe
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\bin\Debug\SocketClient.pdb
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\obj\Debug\SocketClient.csprojResolveAssemblyReference.cache
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\obj\Debug\SocketClient.exe
+C:\Users\Masataka\Documents\CsherpSocketSample\SocketClient\SocketClient\obj\Debug\SocketClient.pdb

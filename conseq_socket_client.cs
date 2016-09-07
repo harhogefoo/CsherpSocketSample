@@ -2,11 +2,20 @@ using System;
 
 public class Client
 {
+  private static int count = 0;
+
   public static void Main()
+  {
+    while(true) {
+      Send();
+    }
+  }
+
+  private static void Send()
   {
     // サーバに送信するデータを入力してもらう
     Console.WriteLine("文字列を入力し，Enterキーを押して下さい．");
-    string sendMsg = Console.ReadLine();
+    string sendMsg = String.Format("{0}", count);
     // 何も入力されなかった時は終了
     if (sendMsg == null || sendMsg.Length == 0)
     {
@@ -37,38 +46,36 @@ public class Client
     // データを送信する
     ns.Write(sendBytes, 0, sendBytes.Length);
     Console.WriteLine(sendMsg);
+    count ++;
 
     // サーバから送られたデータを受信する
-     System.IO.MemoryStream ms = new System.IO.MemoryStream();
-     byte[] resBytes = new byte[256];
-     int resSize = 0;
-     do
-     {
-       // データの一部を受信する
-       resSize = ns.Read(resBytes, 0, resBytes.Length);
-       // Readが0を返した時はサーバが切断したと判断
-       if (resSize == 0)
-       {
-         Console.WriteLine("サーバが切断しました");
-         break;
-       }
+    // System.IO.MemoryStream ms = new System.IO.MemoryStream();
+    // byte[] resBytes = new byte[256];
+    // int resSize = 0;
+    // do
+    // {
+    //   // データの一部を受信する
+    //   resSize = ns.Read(resBytes, 0, resBytes.Length);
+    //   // Readが0を返した時はサーバが切断したと判断
+    //   if (resSize == 0)
+    //   {
+    //     Console.WriteLine("サーバが切断しました");
+    //     break;
+    //   }
 
-       // 受信したデータを蓄積する
-       ms.Write(resBytes, 0, resSize);
-     } while (ns.DataAvailable || resBytes[resSize - 1] != '\n');
-     // 受信したデータを文字列に変換
-     string resMsg = enc.GetString(ms.GetBuffer(), 0, (int)ms.Length);
-     ms.Close();
-     // 末尾の\nを削除
-     resMsg = resMsg.TrimEnd('\n');
-     Console.WriteLine(resMsg);
+    //   // 受信したデータを蓄積する
+    //   ms.Write(resBytes, 0, resSize);
+    // } while (ns.DataAvailable || resBytes[resSize - 1] != '\n');
+    // // 受信したデータを文字列に変換
+    // string resMsg = enc.GetString(ms.GetBuffer(), 0, (int)ms.Length);
+    // ms.Close();
+    // // 末尾の\nを削除
+    // resMsg = resMsg.TrimEnd('\n');
+    // Console.WriteLine(resMsg);
 
     // 閉じる
     ns.Close();
     tcp.Close();
     Console.WriteLine("切断しました．");
-
-    Console.ReadLine();
   }
-
 }
